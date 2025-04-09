@@ -1,7 +1,54 @@
 # AWS Serverless with IaC
+A project demonstrating how to set up an AWS Serverless Event Driven architecture, using various IaC's.
 
-## Getting started
+## Install the AWS CLI
+Full user guide [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for installing on different OS's <br/>
+After installing:
+```
+aws --version
+```
+### Connect account
+[IAM](https://us-east-1.console.aws.amazon.com/iam/home?region=eu-west-1#/users/details/calebdev?section=security_credentials) for security credentials
+```
+aws configure
+# Follow prompts to enter keys and region
+# This will use the CLI access keys you created in IAM on AWS
+```
 
-## AWS CDK
+## IAC examples
 
-## Terraform
+### AWS CDK
+See [AWS CDK example](./cdk-example/)
+
+### Terraform
+See [AWS Terraform example](./terraform-example/)
+
+## After deploying
+You can test either architecture once you've deployed by sending a message onto the first queue
+```
+sh send_message.sh --queue-url {first_sqs_url}
+```
+Use AWS [CloudWatch](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logsV2:log-groups) to see the logs <br/>
+Or navigate to your deployed [DynamoDB](https://eu-west-1.console.aws.amazon.com/dynamodbv2/home?region=eu-west-1#tables) table to see the result entries
+
+## Monitoring
+
+### Lumigo
+[Lumigo](https://lumigo.io/) deploys a Lambda Layer that is able to monitor your Lambda's and send data to the Lumigo platform.
+
+#### Setup
+
+1. Create a Lumigo account
+2. Connect to AWS account
+3. Deploy the Lumigo Integration stack
+![alt text](<assets/lumigo_integration_stack.png>)
+4. Wait a few minutes for the setup on Lumigo to complete
+
+View the functions on your account: https://platform.lumigo.io/project/{project_code}/functions?timespan=LAST_DAY <br/>
+Or your dashboard: https://platform.lumigo.io/project/{project_code}/dashboard?timespan=LAST_DAY
+
+### Datadog
+`TODO`
+
+### AWS Xray
+`TODO`
