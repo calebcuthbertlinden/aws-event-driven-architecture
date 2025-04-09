@@ -1,6 +1,14 @@
 # AWS Serverless with IaC
 A project demonstrating how to set up an AWS Serverless Event Driven architecture, using various IaC's.
 
+- [Install the CLI](#install-the-aws-cli)
+- [IaC examples](#iac-examples)
+    - [AWS CDK](./cdk-example/README.md)
+    - [Terraform](./terraform-example/README.md)
+- [After deploying](#after-deploying)
+- [Monitoring](#monitoring)
+
+
 ## Install the AWS CLI
 Full user guide [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for installing on different OS's <br/>
 After installing:
