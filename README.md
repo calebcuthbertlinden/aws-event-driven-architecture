@@ -42,6 +42,11 @@ sh send_message.sh --queue-url {first_sqs_url}
 Use AWS [CloudWatch](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logsV2:log-groups) to see the logs <br/>
 Or navigate to your deployed [DynamoDB](https://eu-west-1.console.aws.amazon.com/dynamodbv2/home?region=eu-west-1#tables) table to see the result entries
 
+## Pipelines
+This is using Github actions to run the deployment pipelines for both the terraform and cdk projects.<br/>
+See [cdk-deploy.yaml](./.github/workflows/cdk-deploy.yaml) <br/>
+See [terraform-deploy.yaml](./.github/workflows/terraform-deploy.yaml)
+
 ## Monitoring
 
 ### Lumigo
