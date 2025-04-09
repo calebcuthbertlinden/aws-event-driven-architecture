@@ -1,0 +1,46 @@
+name: Deploy Terraform Project
+
+on:
+  push:
+    paths:
+      - 'terraform-example/**'
+  pull_request:
+    paths:
+      - 'terraform-example/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: '1.3.7'
+
+      - name: Terraform Init
+        run: |
+          cd terraform-example
+          terraform init
+          
+      - name: Zip Lambda function
+        run: |
+          cd terraform-example/lambda
+          zip -r ../lambda.zip index.js
+
+      - name: Terraform Plan
+        run: |
+          cd terraform-example
+          terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: |
+          cd terraform-example
+          terraform apply -auto-approve tfplan
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'eu-west-1'
