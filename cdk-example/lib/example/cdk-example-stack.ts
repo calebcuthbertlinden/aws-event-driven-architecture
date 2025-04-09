@@ -78,7 +78,7 @@ export class CdkExampleStack extends cdk.Stack {
       })
     )
 
-    // Event bridge and rules
+    // Output values of the various resources created in this stack
     this.createOutputValue('FirstQueueUrl', this.firstQueue.queueUrl);
     this.createOutputValue('FirstQueueArn', this.firstQueue.queueArn);
     this.createOutputValue('SecondQueueUrl', this.secondQueue.queueUrl);
