@@ -1,0 +1,25 @@
+# Local .terraform directories
+.terraform/
+.terraform.lock.hcl
+
+# Terraform plan/output files
+*.tfplan
+*.tfstate
+*.tfstate.backup
+crash.log
+
+# Sensitive override files
+*.tfvars
+*.tfvars.json
+
+# Zip files for Lambda deployments
+*.zip
+
+# Mac/Linux system files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Node modules (if you're bundling lambdas locally)
+node_modules/
