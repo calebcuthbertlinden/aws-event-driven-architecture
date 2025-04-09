@@ -6,6 +6,9 @@ A project demonstrating how to set up an AWS Serverless Event Driven architectur
     - [AWS CDK](./cdk-example/README.md)
     - [Terraform](./terraform-example/README.md)
 - [After deploying](#after-deploying)
+- [Pipelines](#pipelines)
+    - [AWS CDK](./.github/workflows/cdk-deploy.yaml)
+    - [Terraform](./.github/workflows/terraform-deploy.yaml)
 - [Monitoring](#monitoring)
 
 
@@ -19,7 +22,7 @@ aws --version
 ```
 
 ### Configure account
-[IAM](https://us-east-1.console.aws.amazon.com/iam/home?region=eu-west-1#/users/details/calebdev?section=security_credentials) for security credentials
+[IAM](https://us-east-1.console.aws.amazon.com/iam/home?region=eu-west-1#/users/details/calebdev?section=security_credentials) for security credentials - you would be using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 ```
 aws configure
 # Follow prompts to enter keys and region
@@ -44,6 +47,9 @@ Or navigate to your deployed [DynamoDB](https://eu-west-1.console.aws.amazon.com
 
 ## Pipelines
 This is using Github actions to run the deployment pipelines for both the terraform and cdk projects.<br/>
+
+You will need to have the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` set as repository secrets in the repo.
+
 See [cdk-deploy.yaml](./.github/workflows/cdk-deploy.yaml) <br/>
 See [terraform-deploy.yaml](./.github/workflows/terraform-deploy.yaml)
 
