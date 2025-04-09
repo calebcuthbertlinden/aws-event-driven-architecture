@@ -1,7 +1,7 @@
 # AWS Serverless with IaC
 A project demonstrating how to set up an AWS Serverless Event Driven architecture, using various IaC's.
 
-- [Install the CLI](#install-the-aws-cli)
+- [Connect AWS account](#connect-aws-account)
 - [IaC examples](#iac-examples)
     - [AWS CDK](./cdk-example/README.md)
     - [Terraform](./terraform-example/README.md)
@@ -9,13 +9,16 @@ A project demonstrating how to set up an AWS Serverless Event Driven architectur
 - [Monitoring](#monitoring)
 
 
-## Install the AWS CLI
+## Connect AWS account
+
+### Install the AWS CLI
 Full user guide [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for installing on different OS's <br/>
 After installing:
 ```
 aws --version
 ```
-### Connect account
+
+### Configure account
 [IAM](https://us-east-1.console.aws.amazon.com/iam/home?region=eu-west-1#/users/details/calebdev?section=security_credentials) for security credentials
 ```
 aws configure
@@ -32,7 +35,7 @@ See [AWS CDK example](./cdk-example/)
 See [AWS Terraform example](./terraform-example/)
 
 ## After deploying
-You can test either architecture once you've deployed by sending a message onto the first queue
+You can test either architecture once you've deployed by sending a message onto the first queue, by using the script from [here](./scripts/send_message.sh)
 ```
 sh send_message.sh --queue-url {first_sqs_url}
 ```
