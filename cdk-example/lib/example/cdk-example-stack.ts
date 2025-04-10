@@ -42,8 +42,9 @@ export class CdkExampleStack extends cdk.Stack {
     });
 
     // TODO - use s3 bucket for something
-    this.s3Bucket = new s3.Bucket(this, 'CdkExampleBucket', {
-    });
+    // this.s3Bucket = new s3.Bucket(this, 'CdkExampleBucket', {
+      
+    // });
 
     // Store the event and the state of the event in this table
     // Use this as a quick glimpse to see where things are in the flow
