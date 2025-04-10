@@ -66,7 +66,6 @@ export class CdkExampleStack extends cdk.Stack {
         enabled: true,
       })
     );
-    this.s3Bucket.grantReadWrite(this.s3Bucket);
 
     this.secondLambda = this.createLambda('SecondLambda', 'second-lambda', 'The second lambda in the flow', this.thirdQueue.queueUrl);
     this.secondQueue.grantConsumeMessages(this.firstLambda)
