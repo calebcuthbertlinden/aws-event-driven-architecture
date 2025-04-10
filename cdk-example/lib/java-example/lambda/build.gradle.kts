@@ -21,7 +21,7 @@ tasks.register<Zip>("buildZip") {
         configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }
     })
     from("build/classes/java/main")
-    archiveFileName.set("first-lambda.zip")
+    archiveFileName.set("FirstLambda.zip")
     destinationDirectory.set(file("$buildDir/dist"))
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

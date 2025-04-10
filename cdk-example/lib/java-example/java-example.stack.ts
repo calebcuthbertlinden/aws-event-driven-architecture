@@ -45,7 +45,7 @@ export class CdkJavaExampleStack extends cdk.Stack {
         functionName,
         runtime: lambda.Runtime.JAVA_21,
         handler: `com.example.${functionName}::handleRequest`,
-        code: lambda.Code.fromAsset(path.join(__dirname, 'lambda', 'build', 'dist', 'first-lambda.zip')),
+        code: lambda.Code.fromAsset(path.join(__dirname, 'lambda', 'build', 'dist', 'FirstLambda.zip')),
         memorySize: 256,
         timeout: Duration.seconds(10),
         environment: {
