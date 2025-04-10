@@ -51,7 +51,7 @@ jobs:
 
       - name: Deploy CDK stack
         working-directory: ./cdk-example
-        run: npx cdk deploy --require-approval never
+        run: npx cdk deploy --all --require-approval never
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
