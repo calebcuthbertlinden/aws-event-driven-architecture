@@ -71,6 +71,12 @@ new lambda.Function(this, resourceName, {
     logRetention: logs.RetentionDays.ONE_WEEK,
 })
 ```
+#### Lambda implementations (meat and potatoes)
+You can use many different languages for Lambda, in this project there are a few examples: <br/>
+`Typescript`, `Java`
+
+[Typescript example](/lib/example/lambda/README.md) <br/>
+[Java example](/lib/java-example/lambda/README.md)
 
 ### DynamoDB
 `aws-cdk-lib/aws-dynamodb` <br/>

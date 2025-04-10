@@ -1,0 +1,24 @@
+# Compiled zip for Lambda
+/build/
+
+# Gradle files
+.gradle/
+/gradle-app.setting
+
+# OS / Misc
+.DS_Store
+*.log
+
+# Generated files
+*.jar
+*.war
+*.ear
+
+# Kotlin/Java cache
+*.kotlin_module
+
+# VSCode
+.vscode/
+
+# Local environment files
+.env
