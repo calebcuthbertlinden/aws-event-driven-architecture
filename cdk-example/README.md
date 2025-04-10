@@ -15,7 +15,7 @@ Verify the installation
 cdk --version
 ```
 
-### Install the AWS toolkit for VSCode
+### Install the AWS toolkit for VSCode (Optional)
 https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/setup-toolkit.html
 https://marketplace.visualstudio.com/items/?itemName=AmazonWebServices.aws-toolkit-vscode
 
@@ -32,8 +32,10 @@ cdk init app --language typescript
 ```
 
 ## Implement a few queues and lambdas
-The aws cdl library gives us various constructs we can use to define instances of different services. <br/>
+The aws cdk library gives us various **constructs** we can use to define instances of different services. <br/>
 These services get defined in a *-stack.ts file
+
+`cdk-example-stack.ts`
 ```
 export class CdkExampleStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -44,7 +46,7 @@ export class CdkExampleStack extends cdk.Stack {
 ```
 
 ### SQS
-`aws-cdk-lib/aws-sqs` <br/>
+`import * from aws-cdk-lib/aws-sqs` <br/>
 ```
 new sqs.Queue(this, 'CdkFirstQueue', {
     visibilityTimeout: cdk.Duration.seconds(300),
@@ -52,7 +54,7 @@ new sqs.Queue(this, 'CdkFirstQueue', {
 ```
 
 ### Lambda
-`aws-cdk-lib/aws-lambda` <br/>
+`import * from aws-cdk-lib/aws-lambda` <br/>
 ```
 new lambda.Function(this, resourceName, {
     functionName: functionName,
@@ -79,12 +81,12 @@ You can use many different languages for Lambda, in this project there are a few
 [Java example](./lib/java-example/lambda/README.md)
 
 ### DynamoDB
-`aws-cdk-lib/aws-dynamodb` <br/>
+`import * from aws-cdk-lib/aws-dynamodb` <br/>
 ```
 new dynamo.Table(this, 'CdkEventStateTable', {
     partitionKey: {
-    name: 'id',
-    type: dynamo.AttributeType.STRING,
+        name: 'id',
+        type: dynamo.AttributeType.STRING,
     },
     billingMode: dynamo.BillingMode.PAY_PER_REQUEST,
 })

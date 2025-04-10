@@ -22,16 +22,17 @@ aws --version
 ```
 
 ### Configure account
+You need to connect your AWS account to the AWS CLI on your machine. This is so you can interact with your AWS account through the CLI. <br/>
 [IAM](https://us-east-1.console.aws.amazon.com/iam/home?region=eu-west-1#/users/details/calebdev?section=security_credentials) for security credentials - you would be using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 ```
 aws configure
 # Follow prompts to enter keys and region
-# This will use the CLI access keys you created in IAM on AWS
 ```
 
 ## IAC examples
+We need an easy way to manage and deploy our infrastructure. We do not want to be manually creating and configuring AWS services through the AWS console. This is not transferrable or easy to maintain.
 
-### AWS CDK
+### AWS CDK (Preferred)
 See [AWS CDK example](./cdk-example/)
 
 ### Terraform
@@ -68,6 +69,9 @@ See [terraform-deploy.yaml](./.github/workflows/terraform-deploy.yaml)
 
 View the functions on your account: https://platform.lumigo.io/project/{project_code}/functions?timespan=LAST_DAY <br/>
 Or your dashboard: https://platform.lumigo.io/project/{project_code}/dashboard?timespan=LAST_DAY
+
+#### View full request flow - transaction trace
+![Lumigo Request Flow](<assets/lumigo_request_flow.png>)
 
 ### Datadog
 `TODO`
