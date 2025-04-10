@@ -15,14 +15,6 @@ export const handler = async (event: any): Promise<void> => {
 
         const body = JSON.parse(record.body)
 
-        const params = {
-            QueueUrl: process.env.TARGET_QUEUE_URL!,
-            MessageBody: JSON.stringify({
-                prevMessageId: body.prevMessageId,
-                prevBody: body.prevBody,
-            }),
-        };
-
         // Update state of item to 'PROCESSING'
         const dynamoParams = {
             TableName: process.env.STATE_TABLE_NAME!,
@@ -45,6 +37,14 @@ export const handler = async (event: any): Promise<void> => {
             console.error('Error updating DynamoDB:', err);
         }
         
+        // Send message on to the final queue
+        const params = {
+            QueueUrl: process.env.TARGET_QUEUE_URL!,
+            MessageBody: JSON.stringify({
+                prevMessageId: body.prevMessageId,
+                prevBody: body.prevBody,
+            }),
+        };
         try {
             const command = new SendMessageCommand(params);
             const result = await sqsClient.send(command);

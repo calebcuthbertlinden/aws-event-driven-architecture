@@ -13,7 +13,7 @@ export const handler = async (event: any): Promise<void> => {
         console.log('Body:', record.body);
         const body = JSON.parse(record.body)
 
-        // Update state of item to 'PROCESSED
+        // Update state of item to 'PROCESSED'
         const dynamoParams = {
             TableName: process.env.STATE_TABLE_NAME!,
             Key: {

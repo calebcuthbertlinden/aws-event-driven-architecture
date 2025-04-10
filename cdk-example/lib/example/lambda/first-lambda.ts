@@ -13,15 +13,7 @@ export const handler = async (event: any): Promise<void> => {
         console.log('Message ID:', record.messageId);
         console.log('Body:', record.body);
 
-        const params = {
-            QueueUrl: process.env.TARGET_QUEUE_URL!,
-            MessageBody: JSON.stringify({
-                prevMessageId: record.messageId,
-                prevBody: record.body,
-            }),
-        };
-
-        // Create event in dynamodb
+        // Create and store an event (transaction) in DynamoDB
         const dynamoParams = {
             TableName: process.env.STATE_TABLE_NAME!,
             Item: {
@@ -37,7 +29,15 @@ export const handler = async (event: any): Promise<void> => {
         } catch (err) {
             console.error('Error writing to DynamoDB:', err);
         }
-        
+
+        // Passing the event on to the next queue
+        const params = {
+            QueueUrl: process.env.TARGET_QUEUE_URL!,
+            MessageBody: JSON.stringify({
+                prevMessageId: record.messageId,
+                prevBody: record.body,
+            }),
+        };
         try {
             const command = new SendMessageCommand(params);
             const result = await sqsClient.send(command);

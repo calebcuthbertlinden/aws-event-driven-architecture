@@ -2,7 +2,8 @@ import * as cdk from 'aws-cdk-lib';
 import * as sqs from 'aws-cdk-lib/aws-sqs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as logs from 'aws-cdk-lib/aws-logs';
-import * as dynamo from 'aws-cdk-lib/aws-dynamodb'
+import * as dynamo from 'aws-cdk-lib/aws-dynamodb';
+import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as path from 'path';
 import * as lambdaEventSources from 'aws-cdk-lib/aws-lambda-event-sources';
 import { Construct } from 'constructs';
@@ -21,6 +22,8 @@ export class CdkExampleStack extends cdk.Stack {
 
   private readonly eventStateTable: dynamo.Table;
 
+  private readonly s3Bucket: s3.Bucket;
+
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -36,6 +39,10 @@ export class CdkExampleStack extends cdk.Stack {
     });
     this.thirdQueue = new sqs.Queue(this, 'CdkFinalQueue', {
       visibilityTimeout: cdk.Duration.seconds(300),
+    });
+
+    // TODO - use s3 bucket for something
+    this.s3Bucket = new s3.Bucket(this, 'CdkExampleBucket', {
     });
 
     // Store the event and the state of the event in this table
@@ -54,10 +61,11 @@ export class CdkExampleStack extends cdk.Stack {
     this.secondQueue.grantSendMessages(this.firstLambda);
     this.firstLambda.addEventSource(
       new lambdaEventSources.SqsEventSource(this.firstQueue, {
-        batchSize: 10,
+        batchSize: 1,
         enabled: true,
       })
     );
+    this.s3Bucket.grantReadWrite(this.s3Bucket);
 
     this.secondLambda = this.createLambda('SecondLambda', 'second-lambda', 'The second lambda in the flow', this.thirdQueue.queueUrl);
     this.secondQueue.grantConsumeMessages(this.firstLambda)
